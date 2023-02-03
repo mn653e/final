@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <style>
+      .header {
+        text-align: center;
+        margin: 50px;
+      }
+
+      .header img {
+        width: 30%;
+        height: auto;
+      }
+
+      .slot-machine {
+        text-align: center;
+        margin: 50px;
+      }
+      .emotion {
+        display: inline-block;
+        height: 100px;
+        width: 100px;
+        border: 1px solid black;
+        margin: 10px;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 30px;
+        line-height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <img src="https://i.imgur.com/eh2fS85.jpg" alt="Header Image">
+    </div>
+    <div class="slot-machine">
+      <div class="emotion" id="emotion-1">???</div>
+      <div class="emotion" id="emotion-2">???</div>
+      <div class="emotion" id="emotion-3">???</div>
+      <br><br>
+      <button id="spin-button">Spin</button>
+    </div>
+    <script>
+      const emotions = ["HAPPY", "ANGRY", "SURPRISED", "SAD"];
+      const spinButton = document.getElementById("spin-button");
+      const emotion1 = document.getElementById("emotion-1");
+      const emotion2 = document.getElementById("emotion-2");
+      const emotion3 = document.getElementById("emotion-3");
+      let intervalId;
+      let i = 0;
+      let sadCount = 0;
+
+      spinButton.addEventListener("click", function() {
+        intervalId = setInterval(function() {
+          emotion1.innerHTML = emotions[i % emotions.length]
+          emotion2.innerHTML = emotions[i % emotions.length]
+          emotion3.innerHTML = emotions[i % emotions.length]
+          i++;
+          if (emotion1.innerHTML === "SAD" && emotion2.innerHTML === "SAD" && emotion3.innerHTML === "SAD") {
+            clearInterval(intervalId);
+          }
+          if (i >= 6 || (Date.now() - startTime >= 5000)) {
+            clearInterval(intervalId);
+          }
+          if (emotion1.innerHTML === "SAD" || emotion2.innerHTML === "SAD" || emotion3.innerHTML === "SAD") {
+            sadCount++;
+          }
+          if (sadCount >= 3) {
+            clearInterval(intervalId);
+          }
+        }, 100);
+        const startTime = Date.now();
+        setTimeout(function() {
+          clearInterval(intervalId);
+        }, 5000);
+      });
+    </script>
+  </body>
+</html>
