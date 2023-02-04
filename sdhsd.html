@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #emoji {
+        font-size: 48px;
+        text-align: center;
+        transition: all 1s ease-in-out;
+      }
+      #text {
+        font-size: 24px;
+        color: purple;
+        text-align: center;
+        transition: all 1s ease-in-out;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="emoji">😔</p>
+    <p id="text">NOW I'M MORE HAPPIER</p>
+    <script>
+      setTimeout(function() {
+        document.getElementById("emoji").innerHTML = "🌺😊😊😊🌺";
+        document.getElementById("text").style.display = "block";
+      }, 1000);
+    </script>
+  </body>
+</html>
